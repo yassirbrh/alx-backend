@@ -15,6 +15,7 @@ class FIFOCache(BaseCaching):
             FIFOCache Constructor.
         '''
         super().__init__()
+        self.cache_arr = []
 
     def put(self, key, item):
         '''
@@ -25,9 +26,12 @@ class FIFOCache(BaseCaching):
             return: No return
         '''
         if key is not None and item is not None:
-            if len(self.cache_data) > FIFOCache.MAX_ITEMS:
-                self.cache_data.popitem()
             self.cache_data[key] = item
+            self.cache_arr.append(key)
+        if len(self.cache_data) > FIFOCache.MAX_ITEMS:
+            self.cache_data.pop(self.cache_arr[0])
+            print('DISCARD: {}'.format(self.cache_arr[0]))
+            self.cache_arr.pop(0)
 
     def get(self, key):
         '''
