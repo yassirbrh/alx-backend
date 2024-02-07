@@ -27,12 +27,13 @@ users = {
 }
 
 
-def get_user(login_as: int) -> Union[Dict, None]:
+def get_user() -> Union[Dict, None]:
     '''
         get_user: function
         @login_as: URL parameter.
         return: Dictionary or None.
     '''
+    login_as = request.args.get("login_as")
     if login_as is None or login_as not in users:
         return None
     return int(users[login_as])
@@ -44,9 +45,8 @@ def before_request() -> None:
         before_request: function
         return: None
     '''
-    user = request.args.get("login_as")
-    if user is not None:
-        g.user = get_user(user)
+    user = get_user()
+    g.user = user
 
 
 @babel.localeselector
