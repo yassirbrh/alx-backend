@@ -93,7 +93,7 @@ def index_page() -> str:
         return: the main page
     '''
     g.time = format_datetime(datetime.now())
-    return render_template('7-index.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
