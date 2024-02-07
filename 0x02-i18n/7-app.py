@@ -91,7 +91,7 @@ def index_page() -> str:
         index: function
         return: the main page
     '''
-    return render_template('5-index.html')
+    return render_template('7-index.html')
 
 
 if __name__ == '__main__':
