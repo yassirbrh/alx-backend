@@ -34,7 +34,7 @@ def get_user() -> Union[Dict, None]:
         return: Dictionary or None.
     '''
     login_as = request.args.get("login_as")
-    if login_as is None or login_as not in users:
+    if login_as is None or int(login_as) not in users:
         return None
     return users.get(int(login_as))
 
