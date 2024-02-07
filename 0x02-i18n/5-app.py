@@ -35,7 +35,7 @@ def get_user(login_as: int) -> Union[Dict, None]:
     '''
     if login_as is None or login_as not in users:
         return None
-    return users[login_as]
+    return int(users[login_as])
 
 
 @app.before_request
