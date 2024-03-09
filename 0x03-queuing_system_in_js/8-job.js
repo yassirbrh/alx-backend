@@ -1,9 +1,11 @@
 #!/usr/bin/node
 
 function createPushNotificationsJobs(jobs, queue) {
+
   if (!(jobs instanceof Array)) {
     throw new Error('Jobs is not an array');
   }
+
   for (const jobData of jobs) {
     const job = queue.create('push_notification_code_3', jobData);
 
@@ -20,6 +22,7 @@ function createPushNotificationsJobs(jobs, queue) {
       .on('progress', (progress, _data) => {
         console.log('Notification job', job.id, `${progress}% complete`);
       });
+
     job.save();
   }
 }
